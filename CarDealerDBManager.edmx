@@ -1,0 +1,512 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CarDealerManagementDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TB_ADDRESS">
+          <Key>
+            <PropertyRef Name="ID_ADDRESS" />
+          </Key>
+          <Property Name="ID_ADDRESS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STREET_NUMBER" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZIP_CODE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CITY" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_CAR">
+          <Key>
+            <PropertyRef Name="ID_CAR" />
+          </Key>
+          <Property Name="ID_CAR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_CAR_MODEL" Type="int" />
+          <Property Name="ID_CAR_COLOR" Type="int" />
+          <Property Name="ID_CAR_CONDITION" Type="int" />
+          <Property Name="ID_CAR_COUNTRY" Type="int" />
+          <Property Name="CAR_PRICE" Type="decimal" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="TB_CAR_COLOR">
+          <Key>
+            <PropertyRef Name="ID_CAR_COLOR" />
+          </Key>
+          <Property Name="ID_CAR_COLOR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COLOR" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_CAR_CONDITION">
+          <Key>
+            <PropertyRef Name="ID_CAR_CONDITION" />
+          </Key>
+          <Property Name="ID_CAR_CONDITION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CONDITION" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_CAR_COUNTRY">
+          <Key>
+            <PropertyRef Name="ID_CAR_COUNTRY" />
+          </Key>
+          <Property Name="ID_CAR_COUNTRY" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COUNTRY" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TB_CAR_MODEL">
+          <Key>
+            <PropertyRef Name="ID_CAR_MODEL" />
+          </Key>
+          <Property Name="ID_CAR_MODEL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CAR_MODEL" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TB_CLIENT">
+          <Key>
+            <PropertyRef Name="ID_CLIENT" />
+          </Key>
+          <Property Name="ID_CLIENT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SURNAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PESEL" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="NIP" Type="int" />
+          <Property Name="ID_CLIENT_ADDRESS" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_TRANSACTIONS">
+          <Key>
+            <PropertyRef Name="ID_TRANSACTION" />
+          </Key>
+          <Property Name="ID_TRANSACTION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_CLIENT" Type="int" Nullable="false" />
+          <Property Name="ID_CAR" Type="int" Nullable="false" />
+          <Property Name="TRANSACTION_DATE" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CAR_COLOR">
+          <End Role="TB_CAR_COLOR" Type="Self.TB_CAR_COLOR" Multiplicity="0..1" />
+          <End Role="TB_CAR" Type="Self.TB_CAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_CAR_COLOR">
+              <PropertyRef Name="ID_CAR_COLOR" />
+            </Principal>
+            <Dependent Role="TB_CAR">
+              <PropertyRef Name="ID_CAR_COLOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAR_CONDITION">
+          <End Role="TB_CAR_CONDITION" Type="Self.TB_CAR_CONDITION" Multiplicity="0..1" />
+          <End Role="TB_CAR" Type="Self.TB_CAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_CAR_CONDITION">
+              <PropertyRef Name="ID_CAR_CONDITION" />
+            </Principal>
+            <Dependent Role="TB_CAR">
+              <PropertyRef Name="ID_CAR_CONDITION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAR_COUNTRY">
+          <End Role="TB_CAR_COUNTRY" Type="Self.TB_CAR_COUNTRY" Multiplicity="0..1" />
+          <End Role="TB_CAR" Type="Self.TB_CAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_CAR_COUNTRY">
+              <PropertyRef Name="ID_CAR_COUNTRY" />
+            </Principal>
+            <Dependent Role="TB_CAR">
+              <PropertyRef Name="ID_CAR_COUNTRY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAR_MODEL">
+          <End Role="TB_CAR_MODEL" Type="Self.TB_CAR_MODEL" Multiplicity="0..1" />
+          <End Role="TB_CAR" Type="Self.TB_CAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_CAR_MODEL">
+              <PropertyRef Name="ID_CAR_MODEL" />
+            </Principal>
+            <Dependent Role="TB_CAR">
+              <PropertyRef Name="ID_CAR_MODEL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENT_ADDRESS">
+          <End Role="TB_ADDRESS" Type="Self.TB_ADDRESS" Multiplicity="1" />
+          <End Role="TB_CLIENT" Type="Self.TB_CLIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_ADDRESS">
+              <PropertyRef Name="ID_ADDRESS" />
+            </Principal>
+            <Dependent Role="TB_CLIENT">
+              <PropertyRef Name="ID_CLIENT_ADDRESS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANSACTION_CAR">
+          <End Role="TB_CAR" Type="Self.TB_CAR" Multiplicity="1" />
+          <End Role="TB_TRANSACTIONS" Type="Self.TB_TRANSACTIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_CAR">
+              <PropertyRef Name="ID_CAR" />
+            </Principal>
+            <Dependent Role="TB_TRANSACTIONS">
+              <PropertyRef Name="ID_CAR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANSACTION_CLIENT">
+          <End Role="TB_CLIENT" Type="Self.TB_CLIENT" Multiplicity="1" />
+          <End Role="TB_TRANSACTIONS" Type="Self.TB_TRANSACTIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_CLIENT">
+              <PropertyRef Name="ID_CLIENT" />
+            </Principal>
+            <Dependent Role="TB_TRANSACTIONS">
+              <PropertyRef Name="ID_CLIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarDealerManagementDBModelStoreContainer">
+          <EntitySet Name="TB_ADDRESS" EntityType="Self.TB_ADDRESS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_CAR" EntityType="Self.TB_CAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_CAR_COLOR" EntityType="Self.TB_CAR_COLOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_CAR_CONDITION" EntityType="Self.TB_CAR_CONDITION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_CAR_COUNTRY" EntityType="Self.TB_CAR_COUNTRY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_CAR_MODEL" EntityType="Self.TB_CAR_MODEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_CLIENT" EntityType="Self.TB_CLIENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_TRANSACTIONS" EntityType="Self.TB_TRANSACTIONS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CAR_COLOR" Association="Self.FK_CAR_COLOR">
+            <End Role="TB_CAR_COLOR" EntitySet="TB_CAR_COLOR" />
+            <End Role="TB_CAR" EntitySet="TB_CAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAR_CONDITION" Association="Self.FK_CAR_CONDITION">
+            <End Role="TB_CAR_CONDITION" EntitySet="TB_CAR_CONDITION" />
+            <End Role="TB_CAR" EntitySet="TB_CAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAR_COUNTRY" Association="Self.FK_CAR_COUNTRY">
+            <End Role="TB_CAR_COUNTRY" EntitySet="TB_CAR_COUNTRY" />
+            <End Role="TB_CAR" EntitySet="TB_CAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAR_MODEL" Association="Self.FK_CAR_MODEL">
+            <End Role="TB_CAR_MODEL" EntitySet="TB_CAR_MODEL" />
+            <End Role="TB_CAR" EntitySet="TB_CAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENT_ADDRESS" Association="Self.FK_CLIENT_ADDRESS">
+            <End Role="TB_ADDRESS" EntitySet="TB_ADDRESS" />
+            <End Role="TB_CLIENT" EntitySet="TB_CLIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANSACTION_CAR" Association="Self.FK_TRANSACTION_CAR">
+            <End Role="TB_CAR" EntitySet="TB_CAR" />
+            <End Role="TB_TRANSACTIONS" EntitySet="TB_TRANSACTIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANSACTION_CLIENT" Association="Self.FK_TRANSACTION_CLIENT">
+            <End Role="TB_CLIENT" EntitySet="TB_CLIENT" />
+            <End Role="TB_TRANSACTIONS" EntitySet="TB_TRANSACTIONS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CarDealerManagementDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TB_ADDRESS">
+          <Key>
+            <PropertyRef Name="ID_ADDRESS" />
+          </Key>
+          <Property Name="ID_ADDRESS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STREET_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZIP_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TB_CLIENT" Relationship="Self.FK_CLIENT_ADDRESS" FromRole="TB_ADDRESS" ToRole="TB_CLIENT" />
+        </EntityType>
+        <EntityType Name="TB_CAR">
+          <Key>
+            <PropertyRef Name="ID_CAR" />
+          </Key>
+          <Property Name="ID_CAR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_CAR_MODEL" Type="Int32" />
+          <Property Name="ID_CAR_COLOR" Type="Int32" />
+          <Property Name="ID_CAR_CONDITION" Type="Int32" />
+          <Property Name="ID_CAR_COUNTRY" Type="Int32" />
+          <Property Name="CAR_PRICE" Type="Decimal" Precision="10" Scale="0" />
+          <NavigationProperty Name="TB_CAR_COLOR" Relationship="Self.FK_CAR_COLOR" FromRole="TB_CAR" ToRole="TB_CAR_COLOR" />
+          <NavigationProperty Name="TB_CAR_CONDITION" Relationship="Self.FK_CAR_CONDITION" FromRole="TB_CAR" ToRole="TB_CAR_CONDITION" />
+          <NavigationProperty Name="TB_CAR_COUNTRY" Relationship="Self.FK_CAR_COUNTRY" FromRole="TB_CAR" ToRole="TB_CAR_COUNTRY" />
+          <NavigationProperty Name="TB_CAR_MODEL" Relationship="Self.FK_CAR_MODEL" FromRole="TB_CAR" ToRole="TB_CAR_MODEL" />
+          <NavigationProperty Name="TB_TRANSACTIONS" Relationship="Self.FK_TRANSACTION_CAR" FromRole="TB_CAR" ToRole="TB_TRANSACTIONS" />
+        </EntityType>
+        <EntityType Name="TB_CAR_COLOR">
+          <Key>
+            <PropertyRef Name="ID_CAR_COLOR" />
+          </Key>
+          <Property Name="ID_CAR_COLOR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COLOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TB_CAR" Relationship="Self.FK_CAR_COLOR" FromRole="TB_CAR_COLOR" ToRole="TB_CAR" />
+        </EntityType>
+        <EntityType Name="TB_CAR_CONDITION">
+          <Key>
+            <PropertyRef Name="ID_CAR_CONDITION" />
+          </Key>
+          <Property Name="ID_CAR_CONDITION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CONDITION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TB_CAR" Relationship="Self.FK_CAR_CONDITION" FromRole="TB_CAR_CONDITION" ToRole="TB_CAR" />
+        </EntityType>
+        <EntityType Name="TB_CAR_COUNTRY">
+          <Key>
+            <PropertyRef Name="ID_CAR_COUNTRY" />
+          </Key>
+          <Property Name="ID_CAR_COUNTRY" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COUNTRY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_CAR" Relationship="Self.FK_CAR_COUNTRY" FromRole="TB_CAR_COUNTRY" ToRole="TB_CAR" />
+        </EntityType>
+        <EntityType Name="TB_CAR_MODEL">
+          <Key>
+            <PropertyRef Name="ID_CAR_MODEL" />
+          </Key>
+          <Property Name="ID_CAR_MODEL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CAR_MODEL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_CAR" Relationship="Self.FK_CAR_MODEL" FromRole="TB_CAR_MODEL" ToRole="TB_CAR" />
+        </EntityType>
+        <EntityType Name="TB_CLIENT">
+          <Key>
+            <PropertyRef Name="ID_CLIENT" />
+          </Key>
+          <Property Name="ID_CLIENT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PESEL" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NIP" Type="Int32" />
+          <Property Name="ID_CLIENT_ADDRESS" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TB_ADDRESS" Relationship="Self.FK_CLIENT_ADDRESS" FromRole="TB_CLIENT" ToRole="TB_ADDRESS" />
+          <NavigationProperty Name="TB_TRANSACTIONS" Relationship="Self.FK_TRANSACTION_CLIENT" FromRole="TB_CLIENT" ToRole="TB_TRANSACTIONS" />
+        </EntityType>
+        <EntityType Name="TB_TRANSACTIONS">
+          <Key>
+            <PropertyRef Name="ID_TRANSACTION" />
+          </Key>
+          <Property Name="ID_TRANSACTION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_CLIENT" Type="Int32" Nullable="false" />
+          <Property Name="ID_CAR" Type="Int32" Nullable="false" />
+          <Property Name="TRANSACTION_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="TB_CAR" Relationship="Self.FK_TRANSACTION_CAR" FromRole="TB_TRANSACTIONS" ToRole="TB_CAR" />
+          <NavigationProperty Name="TB_CLIENT" Relationship="Self.FK_TRANSACTION_CLIENT" FromRole="TB_TRANSACTIONS" ToRole="TB_CLIENT" />
+        </EntityType>
+        <Association Name="FK_CLIENT_ADDRESS">
+          <End Role="TB_ADDRESS" Type="Self.TB_ADDRESS" Multiplicity="1" />
+          <End Role="TB_CLIENT" Type="Self.TB_CLIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_ADDRESS">
+              <PropertyRef Name="ID_ADDRESS" />
+            </Principal>
+            <Dependent Role="TB_CLIENT">
+              <PropertyRef Name="ID_CLIENT_ADDRESS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAR_COLOR">
+          <End Role="TB_CAR_COLOR" Type="Self.TB_CAR_COLOR" Multiplicity="0..1" />
+          <End Role="TB_CAR" Type="Self.TB_CAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_CAR_COLOR">
+              <PropertyRef Name="ID_CAR_COLOR" />
+            </Principal>
+            <Dependent Role="TB_CAR">
+              <PropertyRef Name="ID_CAR_COLOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAR_CONDITION">
+          <End Role="TB_CAR_CONDITION" Type="Self.TB_CAR_CONDITION" Multiplicity="0..1" />
+          <End Role="TB_CAR" Type="Self.TB_CAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_CAR_CONDITION">
+              <PropertyRef Name="ID_CAR_CONDITION" />
+            </Principal>
+            <Dependent Role="TB_CAR">
+              <PropertyRef Name="ID_CAR_CONDITION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAR_COUNTRY">
+          <End Role="TB_CAR_COUNTRY" Type="Self.TB_CAR_COUNTRY" Multiplicity="0..1" />
+          <End Role="TB_CAR" Type="Self.TB_CAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_CAR_COUNTRY">
+              <PropertyRef Name="ID_CAR_COUNTRY" />
+            </Principal>
+            <Dependent Role="TB_CAR">
+              <PropertyRef Name="ID_CAR_COUNTRY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAR_MODEL">
+          <End Role="TB_CAR_MODEL" Type="Self.TB_CAR_MODEL" Multiplicity="0..1" />
+          <End Role="TB_CAR" Type="Self.TB_CAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_CAR_MODEL">
+              <PropertyRef Name="ID_CAR_MODEL" />
+            </Principal>
+            <Dependent Role="TB_CAR">
+              <PropertyRef Name="ID_CAR_MODEL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANSACTION_CAR">
+          <End Role="TB_CAR" Type="Self.TB_CAR" Multiplicity="1" />
+          <End Role="TB_TRANSACTIONS" Type="Self.TB_TRANSACTIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_CAR">
+              <PropertyRef Name="ID_CAR" />
+            </Principal>
+            <Dependent Role="TB_TRANSACTIONS">
+              <PropertyRef Name="ID_CAR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANSACTION_CLIENT">
+          <End Role="TB_CLIENT" Type="Self.TB_CLIENT" Multiplicity="1" />
+          <End Role="TB_TRANSACTIONS" Type="Self.TB_TRANSACTIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_CLIENT">
+              <PropertyRef Name="ID_CLIENT" />
+            </Principal>
+            <Dependent Role="TB_TRANSACTIONS">
+              <PropertyRef Name="ID_CLIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarDealerManagementDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TB_ADDRESS" EntityType="Self.TB_ADDRESS" />
+          <EntitySet Name="TB_CAR" EntityType="Self.TB_CAR" />
+          <EntitySet Name="TB_CAR_COLOR" EntityType="Self.TB_CAR_COLOR" />
+          <EntitySet Name="TB_CAR_CONDITION" EntityType="Self.TB_CAR_CONDITION" />
+          <EntitySet Name="TB_CAR_COUNTRY" EntityType="Self.TB_CAR_COUNTRY" />
+          <EntitySet Name="TB_CAR_MODEL" EntityType="Self.TB_CAR_MODEL" />
+          <EntitySet Name="TB_CLIENT" EntityType="Self.TB_CLIENT" />
+          <EntitySet Name="TB_TRANSACTIONS" EntityType="Self.TB_TRANSACTIONS" />
+          <AssociationSet Name="FK_CLIENT_ADDRESS" Association="Self.FK_CLIENT_ADDRESS">
+            <End Role="TB_ADDRESS" EntitySet="TB_ADDRESS" />
+            <End Role="TB_CLIENT" EntitySet="TB_CLIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAR_COLOR" Association="Self.FK_CAR_COLOR">
+            <End Role="TB_CAR_COLOR" EntitySet="TB_CAR_COLOR" />
+            <End Role="TB_CAR" EntitySet="TB_CAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAR_CONDITION" Association="Self.FK_CAR_CONDITION">
+            <End Role="TB_CAR_CONDITION" EntitySet="TB_CAR_CONDITION" />
+            <End Role="TB_CAR" EntitySet="TB_CAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAR_COUNTRY" Association="Self.FK_CAR_COUNTRY">
+            <End Role="TB_CAR_COUNTRY" EntitySet="TB_CAR_COUNTRY" />
+            <End Role="TB_CAR" EntitySet="TB_CAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAR_MODEL" Association="Self.FK_CAR_MODEL">
+            <End Role="TB_CAR_MODEL" EntitySet="TB_CAR_MODEL" />
+            <End Role="TB_CAR" EntitySet="TB_CAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANSACTION_CAR" Association="Self.FK_TRANSACTION_CAR">
+            <End Role="TB_CAR" EntitySet="TB_CAR" />
+            <End Role="TB_TRANSACTIONS" EntitySet="TB_TRANSACTIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANSACTION_CLIENT" Association="Self.FK_TRANSACTION_CLIENT">
+            <End Role="TB_CLIENT" EntitySet="TB_CLIENT" />
+            <End Role="TB_TRANSACTIONS" EntitySet="TB_TRANSACTIONS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CarDealerManagementDBModelStoreContainer" CdmEntityContainer="CarDealerManagementDBEntities">
+          <EntitySetMapping Name="TB_ADDRESS">
+            <EntityTypeMapping TypeName="CarDealerManagementDBModel.TB_ADDRESS">
+              <MappingFragment StoreEntitySet="TB_ADDRESS">
+                <ScalarProperty Name="ID_ADDRESS" ColumnName="ID_ADDRESS" />
+                <ScalarProperty Name="STREET_NUMBER" ColumnName="STREET_NUMBER" />
+                <ScalarProperty Name="ZIP_CODE" ColumnName="ZIP_CODE" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_CAR">
+            <EntityTypeMapping TypeName="CarDealerManagementDBModel.TB_CAR">
+              <MappingFragment StoreEntitySet="TB_CAR">
+                <ScalarProperty Name="ID_CAR" ColumnName="ID_CAR" />
+                <ScalarProperty Name="ID_CAR_MODEL" ColumnName="ID_CAR_MODEL" />
+                <ScalarProperty Name="ID_CAR_COLOR" ColumnName="ID_CAR_COLOR" />
+                <ScalarProperty Name="ID_CAR_CONDITION" ColumnName="ID_CAR_CONDITION" />
+                <ScalarProperty Name="ID_CAR_COUNTRY" ColumnName="ID_CAR_COUNTRY" />
+                <ScalarProperty Name="CAR_PRICE" ColumnName="CAR_PRICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_CAR_COLOR">
+            <EntityTypeMapping TypeName="CarDealerManagementDBModel.TB_CAR_COLOR">
+              <MappingFragment StoreEntitySet="TB_CAR_COLOR">
+                <ScalarProperty Name="ID_CAR_COLOR" ColumnName="ID_CAR_COLOR" />
+                <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_CAR_CONDITION">
+            <EntityTypeMapping TypeName="CarDealerManagementDBModel.TB_CAR_CONDITION">
+              <MappingFragment StoreEntitySet="TB_CAR_CONDITION">
+                <ScalarProperty Name="ID_CAR_CONDITION" ColumnName="ID_CAR_CONDITION" />
+                <ScalarProperty Name="CONDITION" ColumnName="CONDITION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_CAR_COUNTRY">
+            <EntityTypeMapping TypeName="CarDealerManagementDBModel.TB_CAR_COUNTRY">
+              <MappingFragment StoreEntitySet="TB_CAR_COUNTRY">
+                <ScalarProperty Name="ID_CAR_COUNTRY" ColumnName="ID_CAR_COUNTRY" />
+                <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_CAR_MODEL">
+            <EntityTypeMapping TypeName="CarDealerManagementDBModel.TB_CAR_MODEL">
+              <MappingFragment StoreEntitySet="TB_CAR_MODEL">
+                <ScalarProperty Name="ID_CAR_MODEL" ColumnName="ID_CAR_MODEL" />
+                <ScalarProperty Name="CAR_MODEL" ColumnName="CAR_MODEL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_CLIENT">
+            <EntityTypeMapping TypeName="CarDealerManagementDBModel.TB_CLIENT">
+              <MappingFragment StoreEntitySet="TB_CLIENT">
+                <ScalarProperty Name="ID_CLIENT" ColumnName="ID_CLIENT" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+                <ScalarProperty Name="PESEL" ColumnName="PESEL" />
+                <ScalarProperty Name="NIP" ColumnName="NIP" />
+                <ScalarProperty Name="ID_CLIENT_ADDRESS" ColumnName="ID_CLIENT_ADDRESS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_TRANSACTIONS">
+            <EntityTypeMapping TypeName="CarDealerManagementDBModel.TB_TRANSACTIONS">
+              <MappingFragment StoreEntitySet="TB_TRANSACTIONS">
+                <ScalarProperty Name="ID_TRANSACTION" ColumnName="ID_TRANSACTION" />
+                <ScalarProperty Name="ID_CLIENT" ColumnName="ID_CLIENT" />
+                <ScalarProperty Name="ID_CAR" ColumnName="ID_CAR" />
+                <ScalarProperty Name="TRANSACTION_DATE" ColumnName="TRANSACTION_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

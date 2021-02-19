@@ -1,0 +1,13 @@
+﻿<Window x:Class="ProjektSemestralny.WPF_CarDealerManager"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjektSemestralny"
+        mc:Ignorable="d"
+        Title="WPF_CarDealerManager" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="gridCars" HorizontalAlignment="Left" Height="179" Margin="10,10,0,0" VerticalAlignment="Top" Width="531" RenderTransformOrigin="-1.635,-0.77"/>
+
+    </Grid>
+</Window>
