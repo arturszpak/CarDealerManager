@@ -33,5 +33,6 @@ namespace ProjektSemestralny
         public virtual TB_CAR_MODEL TB_CAR_MODEL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TB_TRANSACTIONS> TB_TRANSACTIONS { get; set; }
+
     }
 }
