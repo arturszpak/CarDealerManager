@@ -41,6 +41,10 @@ namespace ProjektSemestralny
             var getCondition = service.GetCondition();
             var getCountry = service.GetCountry();
 
+            string arrowPath = "./assets/img/BackArrow.png";
+            BitmapImage img = new BitmapImage(new Uri(arrowPath, UriKind.Relative));
+            this.arrow.Source = img;
+
 
             // FILL MODELS COMBOBOX
             List<string> displayModels = new List<string>();
@@ -298,5 +302,14 @@ namespace ProjektSemestralny
             price.IsEnabled = state;
         }
 
+        /// <summary>
+        /// Go back to Main Window after click 
+        /// </summary>
+        private void returnMainWindow(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
     }
 }

@@ -177,6 +177,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="assets\img\CarDealerBG.png" />
+    <Resource Include="assets\img\BackArrow.png" />
     <Content Include="CarDealerDBManager.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CarDealerDBManager.edmx</DependentUpon>

@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektSemestralny"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Car Dealer - Main Window" Height="450" Width="800">
+    <Grid Background="#5bc0de">
+        <Label Content="Car Dealer Manager" FontWeight="Bold" FontSize="40" Margin="10 0 0 0"/>
+        <Image Source="./assets/img/CarDealerBG.png" HorizontalAlignment="Left" Height="350" VerticalAlignment="Bottom" />
+        <StackPanel Width="200" HorizontalAlignment="Right" Margin="0 0 15 0">
+            <Label Content="Manage data:" FontSize="24" FontWeight="DemiBold" Margin="0 15 0 30"/>
+            <Button Click="ChangeViewCar" Content="Car Table" Height="50" FontSize="30" FontWeight="Bold" BorderThickness="0" BorderBrush="Transparent" Background="#eeeeee"/>
+        </StackPanel>
         
+
     </Grid>
 </Window>

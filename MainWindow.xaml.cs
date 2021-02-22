@@ -24,5 +24,15 @@ namespace ProjektSemestralny
         {
             InitializeComponent();
         }
+
+        private void ChangeViewCar(object sender, RoutedEventArgs e)
+        {
+
+            WPF_CarDealerManager carWindow = new WPF_CarDealerManager();
+            carWindow.Show();
+
+            this.Close();
+            
+        }
     }
 }
