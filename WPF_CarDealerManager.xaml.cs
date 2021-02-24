@@ -30,20 +30,21 @@ namespace ProjektSemestralny
             InitializeComponent();
 
             //For DataGrid to load
-            ReloadCars();
+            ReloadGrid();
 
             //Initially disable Update ComboBoxes for edit
             ManageIsFieldEnabled(false, inputPriceUpdate, comboColorsUpdate, comboModelsUpdate, comboConditionUpdate, comboCountryUpdate);
+
+
+            string arrowPath = "./assets/img/BackArrow.png";
+            BitmapImage img = new BitmapImage(new Uri(arrowPath, UriKind.Relative));
+            this.arrow.Source = img;
 
             //Get values from tables
             var getModels = service.GetModels();
             var getColors = service.GetColors();
             var getCondition = service.GetCondition();
             var getCountry = service.GetCountry();
-
-            string arrowPath = "./assets/img/BackArrow.png";
-            BitmapImage img = new BitmapImage(new Uri(arrowPath, UriKind.Relative));
-            this.arrow.Source = img;
 
 
             // FILL MODELS COMBOBOX
@@ -93,7 +94,6 @@ namespace ProjektSemestralny
                 CAR_PRICE = int.Parse(this.inputPrice.Text)
             };
 
-
             // Add new object to DB
             context.TB_CAR.Add(carObj);
             context.SaveChanges();
@@ -103,7 +103,7 @@ namespace ProjektSemestralny
             this.inputPrice.Text = "";
 
             //Reload DataGrid
-            ReloadCars();
+            ReloadGrid();
 
             ShowInformationMessageBox("Item successfully added!", "Add");
         }
@@ -112,7 +112,7 @@ namespace ProjektSemestralny
         /// <summary>
         /// Reloads DataGrid
         /// </summary>
-        private void ReloadCars()
+        private void ReloadGrid()
         {
             CarService service = new CarService();
             var getList = service.GetList();
@@ -187,7 +187,7 @@ namespace ProjektSemestralny
                 updatingCarID = null;
                 ManageIsFieldEnabled(false, inputPriceUpdate, comboColorsUpdate, comboModelsUpdate, comboConditionUpdate, comboCountryUpdate);
 
-                ReloadCars();
+                ReloadGrid();
 
                 ShowInformationMessageBox("Item successfully updated!", "Update");
             }
@@ -228,7 +228,7 @@ namespace ProjektSemestralny
                     ResetComboBoxText(comboModelsUpdate, comboCountryUpdate, comboColorsUpdate, comboConditionUpdate);
                     this.inputPriceUpdate.Text = "";
                     updatingCarID = null;
-                    ReloadCars();
+                    ReloadGrid();
                 }
             }
         }
@@ -295,11 +295,10 @@ namespace ProjektSemestralny
         /// <summary>
         /// Change field's Enabled Property 
         /// </summary>
-        private void ManageIsFieldEnabled(bool state, TextBox price, params ComboBox[] fields)
+        private void ManageIsFieldEnabled(bool state, params Control[] fields)
         {
-            foreach(ComboBox field in fields)
+            foreach (Control field in fields)
                 field.IsEnabled = state;
-            price.IsEnabled = state;
         }
 
         /// <summary>

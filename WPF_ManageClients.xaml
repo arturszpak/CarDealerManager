@@ -1,0 +1,48 @@
+﻿<Window x:Class="ProjektSemestralny.WPF_ManageClients"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjektSemestralny"
+        mc:Ignorable="d"
+        Title="WPF_ManageClients" Height="600" Width="800">
+    <Grid x:Name="gridClients">
+        <TextBlock Text="Manage Clients Table" HorizontalAlignment="Center" Margin="302,10,302,518" FontSize="20"/>
+        <DataGrid SelectionMode="Single" IsReadOnly="True" x:Name="ClientDG" HorizontalAlignment="Center" Width="519" Height="170" Margin="24,56,249,343" SelectionChanged="ClientDG_SelectionChanged" />
+        <StackPanel Width="200" HorizontalAlignment="Right" Margin="0 50 20 0">
+            <Label Content="Add client to database" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="textboxName"/>
+            <Label Content="Surname:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="textboxSurname" />
+            <Label Content="PESEL:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="textboxPESEL" />
+            <Label Content="NIP:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="textboxNIP" />
+            <Label Content="Address:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <ComboBox x:Name="comboAddress" ItemsSource="{Binding addressCollection}"/>
+            <Button Content="Add" Margin="0 20 0 0" x:Name="addClientBtn" Click="AddClient" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" />
+        </StackPanel>
+        <StackPanel Width="200" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20 0 0 10">
+            <Label Content="Update client" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="textboxNameUpdate"/>
+            <Label Content="Surname:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="textboxSurnameUpdate" />
+            <Label Content="PESEL:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="textboxPESELUpdate" />
+            <Label Content="NIP:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="textboxNIPUpdate" />
+            <Label Content="Address:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <ComboBox x:Name="comboAddressUpdate" ItemsSource="{Binding addressCollection}"/>
+            <Button Content="Update" Margin="0 20 0 0" x:Name="updateClientBtn" Click="UpdateClient" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" />
+            <Button Content="Delete" Margin="0 10 0 0" x:Name="deleteClientBtn" Click="DeleteClient" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" />
+        </StackPanel>
+        <Button x:Name="returnMainWindowBtn" Width="40" Height="40" Background="Transparent" Click="returnMainWindow" Margin="703,366,49,13">
+            <StackPanel>
+                <Image x:Name="arrow" Source="./assets/img/BackArrow.png" />
+                <TextBlock><Run Text="Disconnect from Server"/></TextBlock>
+            </StackPanel>
+        </Button>
+    </Grid>
+</Window>

@@ -34,5 +34,13 @@ namespace ProjektSemestralny
             this.Close();
             
         }
+
+        private void ChangeViewClient(object sender, RoutedEventArgs e)
+        {
+            WPF_ManageClients clientWindow = new WPF_ManageClients();
+            clientWindow.Show();
+
+            this.Close();
+        }
     }
 }

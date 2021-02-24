@@ -88,6 +88,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CarDealerDBManager.tt</DependentUpon>
     </Compile>
+    <Compile Include="ClientManager.cs" />
     <Compile Include="TB_ADDRESS.cs">
       <DependentUpon>CarDealerDBManager.tt</DependentUpon>
     </Compile>
@@ -115,6 +116,9 @@
     <Compile Include="WPF_CarDealerManager.xaml.cs">
       <DependentUpon>WPF_CarDealerManager.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF_ManageClients.xaml.cs">
+      <DependentUpon>WPF_ManageClients.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -138,6 +142,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="WPF_CarDealerManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF_ManageClients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

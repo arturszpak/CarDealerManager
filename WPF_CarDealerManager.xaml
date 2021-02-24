@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Car Dealer Manager - Car Collection" Height="450" Width="800">
     <Grid Background="#5bc0de">
-        <DataGrid x:Name="gridCars" HorizontalAlignment="Left" Height="160" Margin="10,10,0,0" VerticalAlignment="Top" Width="531" RenderTransformOrigin="-1.635,-0.77" SelectionChanged="gridCars_SelectionChanged"/>
+        <DataGrid SelectionMode="Single" IsReadOnly="True" x:Name="gridCars" HorizontalAlignment="Left" Height="160" Margin="10,10,0,0" VerticalAlignment="Top" Width="531" RenderTransformOrigin="-1.635,-0.77" SelectionChanged="gridCars_SelectionChanged"/>
 
         <StackPanel Width="160" Margin="582,10,40,79">
             <Label Content="ADD A NEW CAR" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
