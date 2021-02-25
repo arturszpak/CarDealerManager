@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektSemestralny"
         mc:Ignorable="d"
-        Title="Car Dealer Manager - Car Collection" Height="450" Width="800">
+        Title="Car Dealer Manager - Car Collection" Height="600" Width="800">
     <Grid Background="#5bc0de">
-        <DataGrid SelectionMode="Single" IsReadOnly="True" x:Name="gridCars" HorizontalAlignment="Left" Height="160" Margin="10,10,0,0" VerticalAlignment="Top" Width="531" RenderTransformOrigin="-1.635,-0.77" SelectionChanged="gridCars_SelectionChanged"/>
+        <Label Content="Car Table Manager" FontFamily="Comic Sans MS" FontWeight="DemiBold" FontSize="26" Width="550" HorizontalContentAlignment="Center" Margin="0,10,242,-10"/>
+        <DataGrid SelectionMode="Single" IsReadOnly="True" x:Name="gridCars" HorizontalAlignment="Left" Height="222" Margin="10,78,0,0" VerticalAlignment="Top" Width="531" RenderTransformOrigin="-1.635,-0.77" SelectionChanged="gridCars_SelectionChanged"/>
 
         <StackPanel Width="160" Margin="582,10,40,79">
-            <Label Content="ADD A NEW CAR" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <Label Content="Add a new Car" FontFamily="Comic Sans MS" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
             <Label Content="Model:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <ComboBox x:Name="comboModels" ItemsSource="{Binding modelsCollection}"/>
             <Label Content="Color:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
@@ -21,11 +22,19 @@
             <ComboBox x:Name="comboCountry" ItemsSource="{Binding countryCollection}"/>
             <Label Content="Price:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBox x:Name="inputPrice" Background="#ddd" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" RenderTransformOrigin="-0.475,-0.522"/>
-            <Button Content="ADD" Margin="0 20 0 0" x:Name="addCarBtn" Click="AddCarBtn_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" />
+
+            <Button Content="Add" FontFamily="Comic Sans MS" x:Name="addCarBtn" Click="AddCarBtn_Click" Background="#5cb85c" Foreground="White" Padding="3" BorderBrush="#3ba6cb" Margin="0 20 0 0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
         </StackPanel>
-        <StackPanel Margin="-100,200, 300, 10" Orientation="Horizontal" Width="350">
+        <StackPanel Margin="10,323,432,-113" Orientation="Horizontal" Width="350">
             <StackPanel Width="160">
-                <Label Content="UPDATE A CAR" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                <Label Content="Update a Car" FontFamily="Comic Sans MS" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
                 <Label Content="Model:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <ComboBox IsEnabled="False" x:Name="comboModelsUpdate" ItemsSource="{Binding modelsCollection}"/>
                 <Label Content="Color:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
@@ -34,20 +43,35 @@
                 <ComboBox IsEnabled="False" x:Name="comboConditionUpdate" ItemsSource="{Binding conditionCollection}"/>
             </StackPanel>
             <StackPanel Width="160" Margin="15,0,0,0">
-                <Label Content="" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                <Label Content="" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
                 <Label Content="Country:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <ComboBox IsEnabled="False" x:Name="comboCountryUpdate" ItemsSource="{Binding countryCollection}"/>
                 <Label Content="Price:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <TextBox IsEnabled="False" x:Name="inputPriceUpdate" Background="#ddd" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" />
-                <Button Content="UPDATE" Margin="0 20 0 0" x:Name="updateBtn" Click="UpdateCars" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" />
-                <Button Content="DELETE" Margin="0 10 0 0" x:Name="deleteBtn" Click="DeleteCar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" />
+                <Button Content="Update" Margin="0 20 0 0" x:Name="updateBtn" Click="UpdateCars" Padding="3" Background="#f0ad4e" Foreground="White" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                </Button>
+
+                <Button Content="Delete" Margin="0 10 0 0" x:Name="deleteBtn" Click="DeleteCar" Padding="3" Background="#d9534f" Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                
             </StackPanel>
         </StackPanel>
-        <Button  x:Name="returnMainWindowBtn" Width="40" Height="40" Background="Transparent" Click="ReturnMainWindow" Margin="703,366,49,13">
+        <Button  x:Name="returnMainWindowBtn" Width="40" Height="40" Background="Transparent" Click="ReturnMainWindow" Margin="707,504,45,25">
             <StackPanel>
                 <Image x:Name="arrow" Source="../Assets/Img/BackArrow.png" />
                 <TextBlock><Run Text="Disconnect from Server"/></TextBlock>
             </StackPanel>
         </Button>
+        <Image Source="../Assets/Img/car-clipart.png" Margin="426,382,140,25"/>
     </Grid>
 </Window>

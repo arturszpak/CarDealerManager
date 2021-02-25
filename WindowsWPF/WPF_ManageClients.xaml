@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:ProjektSemestralny"
         mc:Ignorable="d"
         Title="WPF_ManageClients" Height="600" Width="800">
-    <Grid x:Name="gridClients">
-        <TextBlock Text="Manage Clients Table" HorizontalAlignment="Center" Margin="246,10,225,518" FontSize="20" Width="321" TextAlignment="Center"/>
-        <DataGrid SelectionMode="Single" IsReadOnly="True" x:Name="ClientDG" HorizontalAlignment="Center" Width="519" Height="170" Margin="24,56,249,343" SelectionChanged="ClientDG_SelectionChanged" />
-        <StackPanel Width="200" HorizontalAlignment="Right" Margin="0 50 20 0">
+    <Grid x:Name="gridClients" Background="#5bc0de">
+        <TextBlock Text="Manage Clients Table" FontWeight="DemiBold" HorizontalAlignment="Center" Margin="246,10,225,518" FontSize="26" Width="321" TextAlignment="Center"/>
+        <DataGrid SelectionMode="Single" IsReadOnly="True" x:Name="ClientDG" HorizontalAlignment="Center" Width="519" Margin="141,51,132,366" SelectionChanged="ClientDG_SelectionChanged" />
+        <StackPanel Width="210" HorizontalAlignment="Right" Margin="0,210,132,-161">
             <Label Content="Add client to database" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
             <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBox x:Name="textboxName"/>
@@ -21,9 +21,15 @@
             <TextBox x:Name="textboxNIP" />
             <Label Content="Address:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <ComboBox x:Name="comboAddress" ItemsSource="{Binding addressCollection}"/>
-            <Button Content="Add" Margin="0 20 0 0" x:Name="addClientBtn" Click="AddClient" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" />
+            <Button Content="Add" Margin="0 20 0 0" x:Name="addClientBtn" Click="AddClient" Padding="3" Background="#5cb85c" Foreground="White">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            </Button>
         </StackPanel>
-        <StackPanel Width="200" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20 0 0 10">
+        <StackPanel Width="210" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="141,0,0,10">
             <Label Content="Update client" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
             <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBox x:Name="textboxNameUpdate"/>
@@ -35,8 +41,20 @@
             <TextBox x:Name="textboxNIPUpdate" />
             <Label Content="Address:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <ComboBox x:Name="comboAddressUpdate" ItemsSource="{Binding addressCollection}"/>
-            <Button Content="Update" Margin="0 20 0 0" x:Name="updateClientBtn" Click="UpdateClient" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" />
-            <Button Content="Delete" Margin="0 10 0 0" x:Name="deleteClientBtn" Click="DeleteClient" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" />
+            <Button Content="Update" Margin="0 20 0 0" x:Name="updateClientBtn" Click="UpdateClient" Padding="3" Background="#f0ad4e" Foreground="White">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            </Button>
+            <Button Content="Delete" Margin="0 10 0 0" x:Name="deleteClientBtn" Click="DeleteClient" Padding="3" Background="#d9534f" Foreground="White">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            </Button>
         </StackPanel>
         <Button x:Name="returnMainWindowBtn" Width="40" Height="40" Background="Transparent" Click="returnMainWindow" Margin="703,366,49,13">
             <StackPanel>

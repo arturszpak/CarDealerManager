@@ -6,38 +6,55 @@
         xmlns:local="clr-namespace:ProjektSemestralny"
         mc:Ignorable="d"
         Title="WPF_ManageAddress" Height="600" Width="800">
-    <Grid x:Name="gridAddress">
-        <TextBlock TextAlignment="Center" Text="Manage Address Table" HorizontalAlignment="Center" FontSize="20" Margin="214,0,227,513" Width="351"/>
-        <DataGrid SelectionMode="Single" IsReadOnly="True" x:Name="AddressDG" HorizontalAlignment="Center" Width="586" Height="170" Margin="112,56,94,343" SelectionChanged="AddressDG_SelectionChanged" />
-        <StackPanel Width="200" HorizontalAlignment="Right" Margin="0,263,94,72">
+    <Grid x:Name="gridAddress" Background="#5bc0de">
+        
+        <TextBlock  TextAlignment="Center" Text="Manage Address Table" HorizontalAlignment="Center" FontSize="26" FontWeight="DemiBold" Margin="217,10,224,503" Width="351"/>
+        <DataGrid  SelectionMode="Single" IsReadOnly="True" x:Name="AddressDG" HorizontalAlignment="Center" Width="586" Margin="112,56,94,311" SelectionChanged="AddressDG_SelectionChanged" />
+        <StackPanel Width="200" HorizontalAlignment="Right" Margin="0,282,94,53">
             <Label Content="Add address to db" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
 
-            <Label Content="Street Number:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBox x:Name="textboxStreet"/>
+            <Label Content="Street Number:" HorizontalAlignment="Left" VerticalAlignment="Top"  />
+            <TextBox x:Name="textboxStreet"   />
 
-            <Label Content="City:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBox x:Name="textboxCity" />
+            <Label Content="City:" HorizontalAlignment="Left" VerticalAlignment="Top"  />
+            <TextBox x:Name="textboxCity"   />
 
-            <Label Content="ZIP-Code:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBox x:Name="textboxZIP" />
+            <Label Content="ZIP-Code:" HorizontalAlignment="Left" VerticalAlignment="Top"  />
+            <TextBox x:Name="textboxZIP"  />
 
-            <Button Content="Add" Margin="0 20 0 0" x:Name="addAddressBtn" Click="AddAddress" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" />
+            <Button Content="Add" Margin="0 20 0 0" x:Name="addAddressBtn" Click="AddAddress" Padding="4" Foreground="White" Background="#5cb85c"    >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </StackPanel>
-        <StackPanel Width="200" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="112,0,0,100">
-            <Label Content="Update address" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <StackPanel Width="200" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="112,0,0,30">
+            <Label Content="Update address" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"   />
 
-            <Label Content="Street Number:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBox x:Name="textboxStreetUpdate"/>
+            <Label Content="Street Number:" HorizontalAlignment="Left" VerticalAlignment="Top"  />
+            <TextBox x:Name="textboxStreetUpdate"  />
 
-            <Label Content="City:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBox x:Name="textboxCityUpdate" />
+            <Label Content="City:" HorizontalAlignment="Left" VerticalAlignment="Top"  />
+            <TextBox x:Name="textboxCityUpdate"  />
 
-            <Label Content="ZIP-Code:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBox x:Name="textboxZIPUpdate" />
-            <WrapPanel Margin="0 20 0 0" HorizontalAlignment="Center">
-                <Button Content="Update" x:Name="updateAddressBtn" Click="UpdateAddress" HorizontalAlignment="Left" Width="75" />
-                <Button Content="Delete" Margin="20 0 0 0" x:Name="deleteAddressBtn" Click="DeleteAddress" HorizontalAlignment="Right"  Width="75" />
-            </WrapPanel>
+            <Label Content="ZIP-Code:" HorizontalAlignment="Left" VerticalAlignment="Top"  />
+            <TextBox x:Name="textboxZIPUpdate"  />
+            <Button Content="Update" x:Name="updateAddressBtn" Click="UpdateAddress"  Margin="0 20 0 0" Padding="4"    Background="#f0ad4e" Foreground="White" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Content="Delete" Margin="0 10 0 0" x:Name="deleteAddressBtn" Click="DeleteAddress" Padding="4"    Background="#d9534f" Foreground="White"  >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
         </StackPanel>
         <Button x:Name="returnMainWindowBtn" Width="40" Height="40" Background="Transparent" Click="ReturnMainWindow" Margin="716,507,36,22">
@@ -46,5 +63,6 @@
                 <TextBlock><Run Text="Disconnect from Server"/></TextBlock>
             </StackPanel>
         </Button>
+        <Image Source="../Assets/Img/addresslogo.png" Height="100" Margin="10,402,-10,67"/>
     </Grid>
 </Window>

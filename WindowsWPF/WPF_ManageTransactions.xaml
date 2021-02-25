@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:ProjektSemestralny"
         mc:Ignorable="d"
         Title="WPF_ManageTransactions" Height="600" Width="800">
-    <Grid x:Name="gridTransactions">
-        <TextBlock Text="Manage Transactions" HorizontalAlignment="Center" FontSize="20" Margin="296,0,296,513"/>
+    <Grid x:Name="gridTransactions" Background="#5bc0de">
+        <TextBlock FontFamily="Comic Sans MS" FontWeight="SemiBold" Text="Manage Transactions" HorizontalAlignment="Center" FontSize="26" Margin="255,0,230,0" Width="307"/>
         <DataGrid SelectionMode="Single" IsReadOnly="True" x:Name="TransactionsDG" HorizontalAlignment="Center" Width="586" Height="170" Margin="112,56,94,343" SelectionChanged="TransactionsDG_SelectionChanged" />
-        <StackPanel Width="200" HorizontalAlignment="Right" Margin="0,249,94,86">
+        <StackPanel Width="210" HorizontalAlignment="Right" Margin="0,283,44,52">
             <Label Content="Add transaction to db" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
 
             <Label Content="Car:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
@@ -21,9 +21,15 @@
             <Label Content="Transaction Date:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <DatePicker x:Name="datepickerTransaction" />
 
-            <Button Content="Add" Margin="0 20 0 0" x:Name="addTransactionBtn" Click="AddTransaction" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" />
+            <Button Content="Add" Margin="0 20 0 0" x:Name="addTransactionBtn" Click="AddTransaction" Padding="3" Background="#5cb85c" Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </StackPanel>
-        <StackPanel Width="200" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="112,0,0,100">
+        <StackPanel Width="210" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="45,0,0,63">
             <Label Content="Delete transaction" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
 
             <Label Content="Client:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
@@ -34,14 +40,21 @@
 
             <Label Content="Date of transaction:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <DatePicker x:Name="datepickerDisplayTransactionDate" IsEnabled="False" />
-            <Button Content="Delete" Margin="0 20 0 0" x:Name="deleteTransactionBtn" Click="DeleteTransaction" HorizontalAlignment="Center"  Width="75" />
+            <Button Content="Delete" Margin="0 20 0 0" x:Name="deleteTransactionBtn" Click="DeleteTransaction" Padding="3" Background="#d9534f" Foreground="White" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
         </StackPanel>
-        <Button x:Name="returnMainWindowBtn" Width="40" Height="40" Background="Transparent" Click="ReturnMainWindow" Margin="716,507,36,22">
+        <Button x:Name="returnMainWindowBtn" Width="40" Height="40" Background="Transparent" Click="ReturnMainWindow" Margin="390,502,362,27">
             <StackPanel>
                 <Image x:Name="arrow" Source="../Assets/Img/BackArrow.png" />
                 <TextBlock><Run Text="Disconnect from Server"/></TextBlock>
             </StackPanel>
         </Button>
+        <Image Source="../Assets/Img/money.png" Height="110" Margin="10,352,-10,97"/>
     </Grid>
 </Window>

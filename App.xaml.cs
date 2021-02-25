@@ -13,5 +13,6 @@ namespace ProjektSemestralny
     /// </summary>
     public partial class App : Application
     {
+      
     }
 }

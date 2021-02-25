@@ -4,6 +4,15 @@
              xmlns:local="clr-namespace:ProjektSemestralny"
              StartupUri="WindowsWPF/MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <Style TargetType="{x:Type Control}" x:Key="fontStyling">
+                <Setter Property="FontFamily" Value="Comic Sans MS" />
+            </Style>
+
+            <Style TargetType="{x:Type Label}"  BasedOn="{StaticResource fontStyling}" />
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource fontStyling}" />
+            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource fontStyling}" />
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource fontStyling}" />
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

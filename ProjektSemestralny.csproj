@@ -203,6 +203,9 @@
   <ItemGroup>
     <Resource Include="Assets\Img\CarDealerBG.png" />
     <Resource Include="Assets\Img\BackArrow.png" />
+    <Resource Include="Assets\Img\car-clipart.png" />
+    <Resource Include="Assets\Img\addresslogo.png" />
+    <Resource Include="Assets\Img\money.png" />
     <Content Include="CarDealerDBManager.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CarDealerDBManager.edmx</DependentUpon>
