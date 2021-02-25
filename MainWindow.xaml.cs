@@ -42,5 +42,21 @@ namespace ProjektSemestralny
 
             this.Close();
         }
+
+        private void ChangeViewAddress(object sender, RoutedEventArgs e)
+        {
+            WPF_ManageAddress addressWindow = new WPF_ManageAddress();
+            addressWindow.Show();
+
+            this.Close();
+        }
+
+        private void ChangeViewTransaction(object sender, RoutedEventArgs e)
+        {
+            WPF_ManageTransactions transactionsWindow = new WPF_ManageTransactions();
+            transactionsWindow.Show();
+
+            this.Close();
+        }
     }
 }

@@ -82,6 +82,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddressClass.cs" />
     <Compile Include="CarDealerClass.cs" />
     <Compile Include="CarDealerDBManager.cs">
       <AutoGen>True</AutoGen>
@@ -113,11 +114,18 @@
     <Compile Include="TB_TRANSACTIONS.cs">
       <DependentUpon>CarDealerDBManager.tt</DependentUpon>
     </Compile>
+    <Compile Include="TransactionManager.cs" />
     <Compile Include="WPF_CarDealerManager.xaml.cs">
       <DependentUpon>WPF_CarDealerManager.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF_ManageAddress.xaml.cs">
+      <DependentUpon>WPF_ManageAddress.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF_ManageClients.xaml.cs">
       <DependentUpon>WPF_ManageClients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF_ManageTransactions.xaml.cs">
+      <DependentUpon>WPF_ManageTransactions.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -145,7 +153,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WPF_ManageAddress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WPF_ManageClients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF_ManageTransactions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

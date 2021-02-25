@@ -1,0 +1,47 @@
+﻿<Window x:Class="ProjektSemestralny.WPF_ManageTransactions"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjektSemestralny"
+        mc:Ignorable="d"
+        Title="WPF_ManageTransactions" Height="600" Width="800">
+    <Grid x:Name="gridTransactions">
+        <TextBlock Text="Manage Transactions" HorizontalAlignment="Center" FontSize="20" Margin="296,0,296,513"/>
+        <DataGrid SelectionMode="Single" IsReadOnly="True" x:Name="TransactionsDG" HorizontalAlignment="Center" Width="586" Height="170" Margin="112,56,94,343" SelectionChanged="TransactionsDG_SelectionChanged" />
+        <StackPanel Width="200" HorizontalAlignment="Right" Margin="0,249,94,86">
+            <Label Content="Add transaction to db" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
+
+            <Label Content="Car:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <ComboBox x:Name="comboboxCar" />
+
+            <Label Content="Client:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <ComboBox x:Name="comboboxClient"/>
+
+            <Label Content="Transaction Date:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <DatePicker x:Name="datepickerTransaction" />
+
+            <Button Content="Add" Margin="0 20 0 0" x:Name="addTransactionBtn" Click="AddTransaction" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" />
+        </StackPanel>
+        <StackPanel Width="200" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="112,0,0,100">
+            <Label Content="Delete transaction" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
+
+            <Label Content="Client:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="displayClientBox" IsEnabled="True"/>
+
+            <Label Content="Car:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="displayCarBox" IsEnabled="True"/>
+
+            <Label Content="Date of transaction:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <DatePicker x:Name="datepickerDisplayTransactionDate" IsEnabled="False" />
+            <Button Content="Delete" Margin="0 20 0 0" x:Name="deleteTransactionBtn" Click="DeleteTransaction" HorizontalAlignment="Center"  Width="75" />
+
+        </StackPanel>
+        <Button x:Name="returnMainWindowBtn" Width="40" Height="40" Background="Transparent" Click="ReturnMainWindow" Margin="716,507,36,22">
+            <StackPanel>
+                <Image x:Name="arrow" Source="./assets/img/BackArrow.png" />
+                <TextBlock><Run Text="Disconnect from Server"/></TextBlock>
+            </StackPanel>
+        </Button>
+    </Grid>
+</Window>

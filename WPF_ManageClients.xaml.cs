@@ -22,7 +22,6 @@ namespace ProjektSemestralny
         public WPF_ManageClients()
         {
             InitializeComponent();
-            CarDealerManagementDBEntities db = new CarDealerManagementDBEntities();
             ClientService service = new ClientService();
 
             ReloadGrid();
@@ -46,41 +45,48 @@ namespace ProjektSemestralny
 
         private void AddClient(object sender, RoutedEventArgs e)
         {
-            CarDealerManagementDBEntities db = new CarDealerManagementDBEntities();
-            int parsed;
-            bool parseNIP = int.TryParse(this.textboxNIP.Text, out parsed);
+            bool validation = InputDataValidator(textboxName, textboxSurname, textboxPESEL, textboxNIP, comboAddress);
 
-            string[] addressSplitted = (this.comboAddress.Text).Split(',');
+            if (validation)
+            {
+                CarDealerManagementDBEntities db = new CarDealerManagementDBEntities();
+                int parsed;
+                bool parseNIP = int.TryParse(this.textboxNIP.Text, out parsed);
 
-            //Must assign value to variable , because LINQ Entities does not support 'ArrayIndex'
-            string splitted0 = addressSplitted[0];
+                string[] addressSplitted = (this.comboAddress.Text).Split(',');
+
+                //Must assign value to variable , because LINQ Entities does not support 'ArrayIndex'
+                string splitted0 = addressSplitted[0];
 
 
-            foreach (string address in addressSplitted) address.Trim();
+                foreach (string address in addressSplitted) address.Trim();
 
-            var add = db.TB_ADDRESS
-                .Where(address => (address.STREET_NUMBER == splitted0))
-                .Select(adres => adres.ID_ADDRESS)
-                .FirstOrDefault();
-            Console.WriteLine(add);
+                var add = db.TB_ADDRESS
+                    .Where(address => (address.STREET_NUMBER == splitted0))
+                    .Select(adres => adres.ID_ADDRESS)
+                    .FirstOrDefault();
+                Console.WriteLine(add);
 
-            TB_CLIENT client = new TB_CLIENT() {
-                NAME = this.textboxName.Text,
-                SURNAME = this.textboxSurname.Text,
-                PESEL = this.textboxPESEL.Text,
-                NIP = parseNIP ? parsed : 0,
-                ID_CLIENT_ADDRESS = db.TB_ADDRESS.Where(address => address.STREET_NUMBER == splitted0)
-                                                 .Select(adres => adres.ID_ADDRESS)
-                                                 .FirstOrDefault()
-            };
-          
+                TB_CLIENT client = new TB_CLIENT()
+                {
+                    NAME = this.textboxName.Text.Trim(),
+                    SURNAME = this.textboxSurname.Text.Trim(),
+                    PESEL = this.textboxPESEL.Text.Trim(),
+                    NIP = parseNIP ? parsed : 0,
+                    ID_CLIENT_ADDRESS = db.TB_ADDRESS.Where(address => address.STREET_NUMBER == splitted0)
+                                                     .Select(adres => adres.ID_ADDRESS)
+                                                     .FirstOrDefault()
+                };
 
-            // Add new object to DB
-            db.TB_CLIENT.Add(client);
-            db.SaveChanges();
 
-            ResetFieldValue(this.textboxName, this.textboxSurname, this.textboxPESEL, this.textboxNIP);
-            ReloadGrid();
+                // Add new object to DB
+                db.TB_CLIENT.Add(client);
+                db.SaveChanges();
+
+                ResetFieldValue(this.textboxName, this.textboxSurname, this.textboxPESEL, this.textboxNIP);
+                ReloadGrid();
+            }
+           
 
         }
 
@@ -135,49 +141,57 @@ namespace ProjektSemestralny
         /// </summary>
         private void UpdateClient(object sender, RoutedEventArgs e)
         {
-            //InputDataValidator(inputPriceUpdate, comboModelsUpdate, comboCountryUpdate, comboConditionUpdate, comboColorsUpdate);
+            bool validation = InputDataValidator(textboxNameUpdate, textboxSurnameUpdate, textboxPESELUpdate, textboxNIPUpdate, comboAddressUpdate);
 
-            CarDealerManagementDBEntities db = new CarDealerManagementDBEntities();
-
-            if (updatingClientID == null)
+            if (validation)
             {
-                ShowInformationMessageBox("Please select a row from the DataGrid to update", "Row not selected");
+                CarDealerManagementDBEntities db = new CarDealerManagementDBEntities();
+
+                if (updatingClientID == null)
+                {
+                    ShowInformationMessageBox("Please select a row from the DataGrid to update", "Row not selected");
+                    return;
+                }
+                var result = from r in db.TB_CLIENT where r.ID_CLIENT == this.updatingClientID select r;
+
+                TB_CLIENT obj = result.SingleOrDefault();
+
+                //Check for null
+                if (obj != null)
+                {
+                    //dodać walidacje czy user wprowadza poprawne dane 
+                    var id = obj.ID_CLIENT;
+                    obj.NAME = this.textboxNameUpdate.Text.Trim();
+                    obj.SURNAME = this.textboxSurnameUpdate.Text.Trim();
+                    obj.PESEL = this.textboxPESELUpdate.Text.Trim();
+                    // dodać walidacje czy user wprowadza int
+                    obj.NIP = int.Parse(this.textboxNIPUpdate.Text);
+
+                    string[] addressSplitted = (this.comboAddressUpdate.Text.Trim()).Split(',');
+                    //Must assign value to variable , because LINQ Entities does not support 'ArrayIndex'
+                    string splitted0 = addressSplitted[0];
+                    obj.ID_CLIENT_ADDRESS = db.TB_ADDRESS.Where(address => address.STREET_NUMBER == splitted0)
+                                                     .Select(adres => adres.ID_ADDRESS)
+                                                     .FirstOrDefault();
+
+                    db.SaveChanges();
+
+                    //Reset values
+                    ResetFieldValue(this.textboxNameUpdate, this.textboxNameUpdate, this.textboxNameUpdate, this.textboxNameUpdate);
+                    this.comboAddressUpdate.Text = "";
+                    updatingClientID = null;
+                    ManageIsFieldEnabled(false, textboxNameUpdate, textboxNameUpdate, textboxNameUpdate, textboxNameUpdate, comboAddressUpdate);
+
+                    ReloadGrid();
+
+                    ShowInformationMessageBox("Item successfully updated!", "Update");
+                }
+            }
+            else
+            {
+                ShowInformationMessageBox("Some fields contain errors, please check them", "Error");
                 return;
-            }
-            var result = from r in db.TB_CLIENT where r.ID_CLIENT == this.updatingClientID select r;
-
-            TB_CLIENT obj = result.SingleOrDefault();
-
-            //Check for null
-            if (obj != null)
-            {
-                //dodać walidacje czy user wprowadza poprawne dane 
-                var id = obj.ID_CLIENT;
-                obj.NAME = this.textboxNameUpdate.Text;
-                obj.SURNAME = this.textboxSurnameUpdate.Text;
-                obj.PESEL = this.textboxPESELUpdate.Text;
-                // dodać walidacje czy user wprowadza int
-                obj.NIP = int.Parse(this.textboxNIPUpdate.Text);
-
-                string[] addressSplitted = (this.comboAddressUpdate.Text).Split(',');
-                //Must assign value to variable , because LINQ Entities does not support 'ArrayIndex'
-                string splitted0 = addressSplitted[0];
-                obj.ID_CLIENT_ADDRESS = db.TB_ADDRESS.Where(address => address.STREET_NUMBER == splitted0)
-                                                 .Select(adres => adres.ID_ADDRESS)
-                                                 .FirstOrDefault();
-
-                db.SaveChanges();
-
-                //Reset values
-                ResetFieldValue(this.textboxNameUpdate, this.textboxNameUpdate, this.textboxNameUpdate, this.textboxNameUpdate);
-                this.comboAddressUpdate.Text = "";
-                updatingClientID = null;
-                ManageIsFieldEnabled(false, textboxNameUpdate, textboxNameUpdate, textboxNameUpdate, textboxNameUpdate, comboAddressUpdate);
-
-                ReloadGrid();
-
-                ShowInformationMessageBox("Item successfully updated!", "Update");
-            }
+            } 
         }
 
         private void ManageIsFieldEnabled(bool state, params Control[] fields)
@@ -243,6 +257,31 @@ namespace ProjektSemestralny
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
+        }
+
+        private bool InputDataValidator(params Control[] fields)
+        {
+            foreach (Control field in fields)
+            {
+                if (field is TextBox)
+                {
+                    var textBox = (field as TextBox);
+                    if (textBox.Text.Trim() == "") {
+                        ShowInformationMessageBox("Inputs cannot be empty or blank", "Empty fields");
+                        return false;
+                    } 
+                    if (textBox.Text.Trim().Length >= 50) return false;
+                }
+
+                if (field is ComboBox) {
+                    if ((field as ComboBox).Text == "")
+                    {
+                        ShowInformationMessageBox("Must select all fiels!", "Empty fields");
+                        return false;
+                    }
+                } 
+            }
+            return true;
         }
     }
 }
