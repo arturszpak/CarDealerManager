@@ -26,11 +26,6 @@ namespace ProjektSemestralny
 
             ReloadGrid();
 
-            string arrowPath = "./assets/img/BackArrow.png";
-            BitmapImage img = new BitmapImage(new Uri(arrowPath, UriKind.Relative));
-            this.arrow.Source = img;
-
-
             //Fill address combobox
             var getAddresses = service.GetAddresses();
             List<string> displayAddress = new List<string>();
@@ -43,6 +38,11 @@ namespace ProjektSemestralny
             this.comboAddress.ItemsSource = displayAddress;
         }
 
+        /// <summary>
+        /// Add record to database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddClient(object sender, RoutedEventArgs e)
         {
             bool validation = InputDataValidator(textboxName, textboxSurname, textboxPESEL, textboxNIP, comboAddress);
@@ -89,7 +89,10 @@ namespace ProjektSemestralny
            
 
         }
-
+        /// <summary>
+        /// Reset Field's text Content
+        /// </summary>
+        /// <param name="fields"></param>
         private void ResetFieldValue(params Control[] fields)
         {
             foreach (Control field in fields)
@@ -99,6 +102,9 @@ namespace ProjektSemestralny
             }
         }
 
+        /// <summary>
+        /// Reload DataGrid
+        /// </summary>
         private void ReloadGrid()
         {
             ClientService service = new ClientService();
@@ -113,6 +119,11 @@ namespace ProjektSemestralny
         }
 
         private int? updatingClientID = null;
+        /// <summary>
+        /// Put data from selected row into update form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClientDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -159,16 +170,21 @@ namespace ProjektSemestralny
                 //Check for null
                 if (obj != null)
                 {
-                    //dodać walidacje czy user wprowadza poprawne dane 
+                    
                     var id = obj.ID_CLIENT;
                     obj.NAME = this.textboxNameUpdate.Text.Trim();
                     obj.SURNAME = this.textboxSurnameUpdate.Text.Trim();
                     obj.PESEL = this.textboxPESELUpdate.Text.Trim();
-                    // dodać walidacje czy user wprowadza int
-                    obj.NIP = int.Parse(this.textboxNIPUpdate.Text);
 
+                    int parsedInt;
+                    if (int.TryParse(this.textboxNIPUpdate.Text.Trim(), out parsedInt))
+                    {
+                        obj.NIP = parsedInt;
+                    }
+                    else ShowInformationMessageBox("Input must be type of integer!", "Not an integer");
+                    
                     string[] addressSplitted = (this.comboAddressUpdate.Text.Trim()).Split(',');
-                    //Must assign value to variable , because LINQ Entities does not support 'ArrayIndex'
+                    //Must assign value to variable, because LINQ Entities does not support 'ArrayIndex'
                     string splitted0 = addressSplitted[0];
                     obj.ID_CLIENT_ADDRESS = db.TB_ADDRESS.Where(address => address.STREET_NUMBER == splitted0)
                                                      .Select(adres => adres.ID_ADDRESS)
@@ -194,6 +210,11 @@ namespace ProjektSemestralny
             } 
         }
 
+        /// <summary>
+        /// Changes field IsEnabled property
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="fields"></param>
         private void ManageIsFieldEnabled(bool state, params Control[] fields)
         {
             foreach (Control field in fields)
@@ -212,6 +233,11 @@ namespace ProjektSemestralny
                 MessageBoxResult.OK);
         }
 
+        /// <summary>
+        /// Delete row from database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteClient(object sender, RoutedEventArgs e)
         {
             if (updatingClientID == null)
@@ -259,6 +285,11 @@ namespace ProjektSemestralny
             this.Close();
         }
 
+        /// <summary>
+        /// Validate update and add forms
+        /// </summary>
+        /// <param name="fields"></param>
+        /// <returns></returns>
         private bool InputDataValidator(params Control[] fields)
         {
             foreach (Control field in fields)

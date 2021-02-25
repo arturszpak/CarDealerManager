@@ -29,7 +29,7 @@ namespace ProjektSemestralny
 
     public class CarService
     {
-        CarDealerManagementDBEntities context = new CarDealerManagementDBEntities();
+        readonly CarDealerManagementDBEntities context = new CarDealerManagementDBEntities();
 
         public List<TB_CAR_MODEL> GetModels() => context.TB_CAR_MODEL.ToList();
         public List<TB_CAR_COLOR> GetColors() => context.TB_CAR_COLOR.ToList();

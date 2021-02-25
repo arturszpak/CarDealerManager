@@ -27,10 +27,10 @@
             <Label Content="Delete transaction" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
 
             <Label Content="Client:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBox x:Name="displayClientBox" IsEnabled="True"/>
+            <TextBox x:Name="displayClientBox" IsEnabled="False"/>
 
             <Label Content="Car:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBox x:Name="displayCarBox" IsEnabled="True"/>
+            <TextBox x:Name="displayCarBox" IsEnabled="False"/>
 
             <Label Content="Date of transaction:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <DatePicker x:Name="datepickerDisplayTransactionDate" IsEnabled="False" />
@@ -39,7 +39,7 @@
         </StackPanel>
         <Button x:Name="returnMainWindowBtn" Width="40" Height="40" Background="Transparent" Click="ReturnMainWindow" Margin="716,507,36,22">
             <StackPanel>
-                <Image x:Name="arrow" Source="./assets/img/BackArrow.png" />
+                <Image x:Name="arrow" Source="../Assets/Img/BackArrow.png" />
                 <TextBlock><Run Text="Disconnect from Server"/></TextBlock>
             </StackPanel>
         </Button>

@@ -59,6 +59,9 @@ namespace ProjektSemestralny
             this.comboboxClient.ItemsSource = displayClient;
         }
 
+        /// <summary>
+        /// Reload Grid
+        /// </summary>
         private void ReloadGrid()
         {
             TransactionService service = new TransactionService();
@@ -73,6 +76,11 @@ namespace ProjektSemestralny
         }
 
         private int? updatingTransactionID = null;
+        /// <summary>
+        /// Populate Update form on row selection in datagrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TransactionsDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Check for correct selection
@@ -90,6 +98,11 @@ namespace ProjektSemestralny
             }
         }
 
+        /// <summary>
+        /// Add record to the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddTransaction(object sender, RoutedEventArgs e)
         {
             CarDealerManagementDBEntities db = new CarDealerManagementDBEntities();
@@ -110,6 +123,11 @@ namespace ProjektSemestralny
             ReloadGrid();
         }
 
+        /// <summary>
+        /// Delete record from the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteTransaction(object sender, RoutedEventArgs e)
         {
             if (updatingTransactionID == null)
@@ -146,6 +164,10 @@ namespace ProjektSemestralny
             }
         }
 
+        /// <summary>
+        /// Reset field text property
+        /// </summary>
+        /// <param name="fields"></param>
         private void ResetFieldValue(params Control[] fields)
         {
             foreach (Control field in fields)
@@ -156,6 +178,11 @@ namespace ProjektSemestralny
             }
         }
 
+        /// <summary>
+        /// Close current window and open main window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ReturnMainWindow(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
@@ -163,6 +190,11 @@ namespace ProjektSemestralny
             this.Close();
         }
 
+        /// <summary>
+        /// Show simple MessageBox
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="header"></param>
         private void ShowInformationMessageBox(string content, string header)
         {
             MessageBox.Show(content,

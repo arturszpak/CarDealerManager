@@ -15,6 +15,7 @@ namespace ProjektSemestralny
 
         public TransactionManager(TB_TRANSACTIONS transaction)
         {
+            //Build display format
             string clientBuilder = $"{transaction.TB_CLIENT.NAME}, " +
                                    $"{transaction.TB_CLIENT.SURNAME}, " +
                                    $"pesel: {transaction.TB_CLIENT.PESEL}, " +
@@ -22,7 +23,7 @@ namespace ProjektSemestralny
                                    $"Address: {transaction.TB_CLIENT.TB_ADDRESS.STREET_NUMBER}," +
                                    $" {transaction.TB_CLIENT.TB_ADDRESS.CITY}," +
                                    $" {transaction.TB_CLIENT.TB_ADDRESS.ZIP_CODE}";
-
+            //Build display format
             string carBuilder = $"{transaction.TB_CAR.TB_CAR_MODEL.CAR_MODEL}, " +
                                   $"color: {transaction.TB_CAR.TB_CAR_COLOR.COLOR}, " +
                                   $"condition: {transaction.TB_CAR.TB_CAR_CONDITION.CONDITION}, " +
@@ -37,11 +38,7 @@ namespace ProjektSemestralny
     }
     public class TransactionService
     {
-        CarDealerManagementDBEntities context = new CarDealerManagementDBEntities();
-        public List<TB_CAR_MODEL> GetModels() => context.TB_CAR_MODEL.ToList();
-        public List<TB_CAR_COLOR> GetColors() => context.TB_CAR_COLOR.ToList();
-        public List<TB_CAR_COUNTRY> GetCountry() => context.TB_CAR_COUNTRY.ToList();
-        public List<TB_CAR_CONDITION> GetCondition() => context.TB_CAR_CONDITION.ToList();
+        readonly CarDealerManagementDBEntities context = new CarDealerManagementDBEntities();
 
         public List<TB_CAR> GetCars()
         {

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="WPF_ManageAddress" Height="600" Width="800">
     <Grid x:Name="gridAddress">
-        <TextBlock Text="Manage Address Table" HorizontalAlignment="Center" FontSize="20" Margin="296,0,296,513"/>
+        <TextBlock TextAlignment="Center" Text="Manage Address Table" HorizontalAlignment="Center" FontSize="20" Margin="214,0,227,513" Width="351"/>
         <DataGrid SelectionMode="Single" IsReadOnly="True" x:Name="AddressDG" HorizontalAlignment="Center" Width="586" Height="170" Margin="112,56,94,343" SelectionChanged="AddressDG_SelectionChanged" />
         <StackPanel Width="200" HorizontalAlignment="Right" Margin="0,263,94,72">
             <Label Content="Add address to db" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
@@ -38,11 +38,11 @@
                 <Button Content="Update" x:Name="updateAddressBtn" Click="UpdateAddress" HorizontalAlignment="Left" Width="75" />
                 <Button Content="Delete" Margin="20 0 0 0" x:Name="deleteAddressBtn" Click="DeleteAddress" HorizontalAlignment="Right"  Width="75" />
             </WrapPanel>
-            
+
         </StackPanel>
-        <Button x:Name="returnMainWindowBtn" Width="40" Height="40" Background="Transparent" Click="returnMainWindow" Margin="716,507,36,22">
+        <Button x:Name="returnMainWindowBtn" Width="40" Height="40" Background="Transparent" Click="ReturnMainWindow" Margin="716,507,36,22">
             <StackPanel>
-                <Image x:Name="arrow" Source="./assets/img/BackArrow.png" />
+                <Image x:Name="arrow" Source="../Assets/Img/BackArrow.png" />
                 <TextBlock><Run Text="Disconnect from Server"/></TextBlock>
             </StackPanel>
         </Button>

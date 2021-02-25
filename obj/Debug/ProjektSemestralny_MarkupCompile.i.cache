@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Artur\source\repos\ProjektSemestralny\App.xaml
-5-1862517014
+5-1145487501
 41826025543
-25117066747
+25-1602460082
 18479215688
-MainWindow.xaml;WPF_CarDealerManager.xaml;WPF_ManageAddress.xaml;WPF_ManageClients.xaml;WPF_ManageTransactions.xaml;
+WindowsWPF\MainWindow.xaml;WindowsWPF\WPF_CarDealerManager.xaml;WindowsWPF\WPF_ManageAddress.xaml;WindowsWPF\WPF_ManageClients.xaml;WindowsWPF\WPF_ManageTransactions.xaml;
 
 True
 

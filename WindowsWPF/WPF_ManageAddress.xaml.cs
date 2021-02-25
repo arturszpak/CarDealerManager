@@ -23,12 +23,10 @@ namespace ProjektSemestralny
         {
             InitializeComponent();
             ReloadGrid();
-
-            string arrowPath = "./assets/img/BackArrow.png";
-            BitmapImage img = new BitmapImage(new Uri(arrowPath, UriKind.Relative));
-            this.arrow.Source = img;
         }
-
+        /// <summary>
+        /// Reload DataGrid
+        /// </summary>
         private void ReloadGrid()
         {
             AddressService service = new AddressService();
@@ -62,12 +60,22 @@ namespace ProjektSemestralny
             }
         }
 
+        /// <summary>
+        /// Change field enabled
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="fields"></param>
         private void ManageIsFieldEnabled(bool state, params Control[] fields)
         {
             foreach (Control field in fields)
                 field.IsEnabled = state;
         }
 
+        /// <summary>
+        /// Add new record to database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddAddress(object sender, RoutedEventArgs e)
         {
             bool validation = InputDataValidator(textboxStreet, textboxCity, textboxZIP);
@@ -90,10 +98,12 @@ namespace ProjektSemestralny
                 ResetFieldValue(this.textboxStreet, this.textboxCity, this.textboxZIP);
                 ReloadGrid();
             }
-
         }
 
-
+        /// <summary>
+        /// Reset Text Content of Grid Element type of Control
+        /// </summary>
+        /// <param name="fields"></param>
         private void ResetFieldValue(params Control[] fields)
         {
             foreach (Control field in fields)
@@ -103,6 +113,11 @@ namespace ProjektSemestralny
             }
         }
 
+        /// <summary>
+        /// Update a record in database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateAddress(object sender, RoutedEventArgs e)
         {
             bool validation = InputDataValidator(textboxStreetUpdate, textboxCityUpdate, textboxZIPUpdate);
@@ -142,7 +157,11 @@ namespace ProjektSemestralny
            
         }
 
-
+        /// <summary>
+        /// Delete row from database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteAddress(object sender, RoutedEventArgs e)
         {
             if (updatingAddressID == null)
@@ -179,12 +198,23 @@ namespace ProjektSemestralny
             }
         }
 
-        private void returnMainWindow(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Return to main window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ReturnMainWindow(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
         }
+
+        /// <summary>
+        /// Display simple MessageBox
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="header"></param>
         private void ShowInformationMessageBox(string content, string header)
         {
             MessageBox.Show(content,
@@ -194,6 +224,12 @@ namespace ProjektSemestralny
                 MessageBoxResult.OK);
         }
 
+
+        /// <summary>
+        /// Validate added and updated records
+        /// </summary>
+        /// <param name="fields"></param>
+        /// <returns></returns>
         private bool InputDataValidator(params Control[] fields)
         {
             foreach (Control field in fields)
@@ -206,7 +242,10 @@ namespace ProjektSemestralny
                         ShowInformationMessageBox("Inputs cannot be empty or blank", "Empty fields");
                         return false;
                     }
-                    if (textBox.Text.Trim().Length >= 50) return false;
+                    if (textBox.Text.Trim().Length >= 50) {
+                        ShowInformationMessageBox("Length cannot be longer than 50 characters!", "Too many characters");
+                        return false;
+                    } 
                 }
 
                 if (field is ComboBox)

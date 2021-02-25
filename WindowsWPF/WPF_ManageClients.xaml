@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="WPF_ManageClients" Height="600" Width="800">
     <Grid x:Name="gridClients">
-        <TextBlock Text="Manage Clients Table" HorizontalAlignment="Center" Margin="302,10,302,518" FontSize="20"/>
+        <TextBlock Text="Manage Clients Table" HorizontalAlignment="Center" Margin="246,10,225,518" FontSize="20" Width="321" TextAlignment="Center"/>
         <DataGrid SelectionMode="Single" IsReadOnly="True" x:Name="ClientDG" HorizontalAlignment="Center" Width="519" Height="170" Margin="24,56,249,343" SelectionChanged="ClientDG_SelectionChanged" />
         <StackPanel Width="200" HorizontalAlignment="Right" Margin="0 50 20 0">
             <Label Content="Add client to database" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" />
@@ -40,7 +40,7 @@
         </StackPanel>
         <Button x:Name="returnMainWindowBtn" Width="40" Height="40" Background="Transparent" Click="returnMainWindow" Margin="703,366,49,13">
             <StackPanel>
-                <Image x:Name="arrow" Source="./assets/img/BackArrow.png" />
+                <Image x:Name="arrow" Source="../Assets/Img/BackArrow.png" />
                 <TextBlock><Run Text="Disconnect from Server"/></TextBlock>
             </StackPanel>
         </Button>

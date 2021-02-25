@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using ProjektSemestralny;
 
 namespace ProjektSemestralny
 {
@@ -22,8 +14,8 @@ namespace ProjektSemestralny
     /// </remarks>
     public partial class WPF_CarDealerManager : Window
     {
-        CarService service = new CarService();
-        CarDealerManagementDBEntities context = new CarDealerManagementDBEntities();
+        readonly CarService service = new CarService();
+        readonly CarDealerManagementDBEntities context = new CarDealerManagementDBEntities();
 
         public WPF_CarDealerManager()
         {
@@ -35,11 +27,6 @@ namespace ProjektSemestralny
             //Initially disable Update ComboBoxes for edit
             ManageIsFieldEnabled(false, inputPriceUpdate, comboColorsUpdate, comboModelsUpdate, comboConditionUpdate, comboCountryUpdate);
 
-
-            string arrowPath = "./assets/img/BackArrow.png";
-            BitmapImage img = new BitmapImage(new Uri(arrowPath, UriKind.Relative));
-            this.arrow.Source = img;
-
             //Get values from tables
             var getModels = service.GetModels();
             var getColors = service.GetColors();
@@ -47,28 +34,28 @@ namespace ProjektSemestralny
             var getCountry = service.GetCountry();
 
 
-            // FILL MODELS COMBOBOX
+            //Fill Model ComboBox
             List<string> displayModels = new List<string>();
             foreach (var model in getModels)
                 displayModels.Add(model.CAR_MODEL);
             this.comboModels.ItemsSource = displayModels;
             this.comboModelsUpdate.ItemsSource = displayModels;
 
-            // FILL COLORS COMBOBOX
+            //Fill Color ComboBox
             List<string> displayColors = new List<string>();
             foreach (var color in getColors)
                 displayColors.Add(color.COLOR);
             this.comboColors.ItemsSource = displayColors;
             this.comboColorsUpdate.ItemsSource = displayColors;
 
-            // FILL CONDITION COMBOBOX
+            //Fill Condition ComboBox
             List<string> displayCondition = new List<string>();
             foreach (var condition in getCondition)
                 displayCondition.Add(condition.CONDITION);
             this.comboCondition.ItemsSource = displayCondition;
             this.comboConditionUpdate.ItemsSource = displayCondition;
 
-            // FILL COUNTRY COMBOBOX
+            //Fill Country ComboBox
             List<string> displayCountry = new List<string>();
             foreach (var country in getCountry)
                 displayCountry.Add(country.COUNTRY);
@@ -79,7 +66,7 @@ namespace ProjektSemestralny
         /// <summary>
         /// Adds new row to DB
         /// </summary>
-        private void addCarBtn_Click(object sender, RoutedEventArgs e)
+        private void AddCarBtn_Click(object sender, RoutedEventArgs e)
         {
             //Validation for empty fields
             InputDataValidator(inputPrice, comboModels, comboColors, comboCondition, comboCountry);
@@ -291,9 +278,8 @@ namespace ProjektSemestralny
 
             return true;
         }
-
         /// <summary>
-        /// Change field's Enabled Property 
+        /// Change field's IsEnabled Property 
         /// </summary>
         private void ManageIsFieldEnabled(bool state, params Control[] fields)
         {
@@ -304,11 +290,14 @@ namespace ProjektSemestralny
         /// <summary>
         /// Go back to Main Window after click 
         /// </summary>
-        private void returnMainWindow(object sender, RoutedEventArgs e)
+        private void ReturnMainWindow(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
         }
+
+
+
     }
 }

@@ -24,7 +24,7 @@ namespace ProjektSemestralny
 
     public class AddressService
     {
-        CarDealerManagementDBEntities context = new CarDealerManagementDBEntities();
+        readonly CarDealerManagementDBEntities context = new CarDealerManagementDBEntities();
         public List<TB_ADDRESS> GetList()
         {
             return context.TB_ADDRESS.ToList();

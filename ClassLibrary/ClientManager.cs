@@ -32,7 +32,7 @@ namespace ProjektSemestralny
 
     public class ClientService
     {
-        CarDealerManagementDBEntities db = new CarDealerManagementDBEntities();
+        readonly CarDealerManagementDBEntities db = new CarDealerManagementDBEntities();
 
         public List<TB_ADDRESS> GetAddresses() => db.TB_ADDRESS.ToList();
 
