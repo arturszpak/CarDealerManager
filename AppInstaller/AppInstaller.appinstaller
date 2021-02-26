@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppInstaller
+	Uri="file:///C:/Users/Artur/source/repos/AppInstaller/AppInstaller.appinstaller"
+	Version="1.0.3.0" xmlns="http://schemas.microsoft.com/appx/appinstaller/2017/2">
+	<MainBundle
+		Name="6c6923a8-6b88-49e9-a285-8e26bde922b5"
+		Version="1.0.3.0"
+		Publisher="CN=Artur Szpak"
+		Uri="file:///C:/Users/Artur/source/repos/AppInstaller/AppInstaller_1.0.3.0_Test/AppInstaller_1.0.3.0_x86_x64.msixbundle" />
+	<UpdateSettings>
+		<OnLaunch
+			HoursBetweenUpdateChecks="0" />
+	</UpdateSettings>
+</AppInstaller>
