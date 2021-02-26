@@ -36,6 +36,7 @@ namespace ProjektSemestralny
             }
                 
             this.comboAddress.ItemsSource = displayAddress;
+            this.comboAddressUpdate.ItemsSource = displayAddress;
         }
 
         /// <summary>

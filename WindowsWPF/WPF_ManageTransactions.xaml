@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektSemestralny"
-        mc:Ignorable="d"
+        mc:Ignorable="d" Icon="../Assets/Icons/car.ico"
         Title="WPF_ManageTransactions" Height="600" Width="800">
     <Grid x:Name="gridTransactions" Background="#5bc0de">
         <TextBlock FontFamily="Comic Sans MS" FontWeight="SemiBold" Text="Manage Transactions" HorizontalAlignment="Center" FontSize="26" Margin="255,0,230,0" Width="307"/>
